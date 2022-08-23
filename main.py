@@ -171,10 +171,6 @@ def create_vit_classifier():
     # Create the keras model.
     model = models.Model(inputs, logits)
 
-    return model
-
-
-def run_experiment(model: models.Model):
     optimizer = tfa.optimizers.AdamW(
         learning_rate=learning_rate, weight_decay=weight_decay
     )
@@ -188,6 +184,10 @@ def run_experiment(model: models.Model):
         ]
     )
 
+    return model
+
+
+def run_experiment(model: models.Model):
     checkpoint_filepath = "tmp/checkpoint"
     checkpoint_callback = callbacks.ModelCheckpoint(
         checkpoint_filepath,
