@@ -206,7 +206,7 @@ def run_experiment(model: models.Model):
     )
 
     model.load_weights(checkpoint_filepath)
-    _, accuracy, top_5_accuracy = model.evaluate()
+    _, accuracy, top_5_accuracy = model.evaluate(x_test, y_test)
     print(f"Test accuracy: {round(accuracy * 100, 2)}%")
     print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
 
