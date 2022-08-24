@@ -124,6 +124,8 @@ class PatchEncoder(layers.Layer):
             "position_embedding": self.position_embedding
         })
 
+        return config
+
     def call(self, patch):
         positions = tf.range(start=0, limit=self.num_patches, delta=1)
         encoded = self.projection(patch) + self.position_embedding(positions)
@@ -204,6 +206,7 @@ def run_experiment(model: models.Model):
     )
 
     model.load_weights(checkpoint_filepath)
+    model.save("model.h5")
     _, accuracy, top_5_accuracy = model.evaluate(x_test, y_test)
     print(f"Test accuracy: {round(accuracy * 100, 2)}%")
     print(f"Test top 5 accuracy: {round(top_5_accuracy * 100, 2)}%")
