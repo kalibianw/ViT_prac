@@ -42,8 +42,6 @@ data_augmentation = models.Sequential(
     name="data_augmentation"
 )
 
-data_augmentation.layers[0].adapt(x_train)
-
 
 def mlp(x, hidden_units, dropout_rate):
     for units in hidden_units:
